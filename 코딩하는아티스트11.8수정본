@@ -1,0 +1,156 @@
+class ys{
+ float ys_x, ys_y, ys_d, ys_vx,ys_vy;
+ 
+ ys(){
+ ys_x = random(100, 700);
+ ys_y = random(100, 700);
+ ys_d = 5;
+ ys_vx = random(-10, 10);
+ ys_vy = random(-10, 10);
+ }
+ 
+ void ys_show(){
+ fill(#B98420);
+  arc(ys_x-7*ys_d,ys_y-6.2*ys_d,4*ys_d,7*ys_d,0,2*PI); //귀
+  arc(ys_x+7*ys_d,ys_y-6.2*ys_d,4*ys_d,7*ys_d,0,2*PI);
+  circle(ys_x,ys_y,20*ys_d);   //얼굴
+  fill(0,0,0);
+  arc(ys_x-3*ys_d,ys_y-4*ys_d,5*ys_d,1.5*ys_d,0,2*PI);  //눈썹
+  arc(ys_x+3*ys_d,ys_y-4*ys_d,5*ys_d,1.5*ys_d,0,2*PI);
+  circle(ys_x-3*ys_d,ys_y-2*ys_d,3*ys_d);  //눈
+  circle(ys_x+3*ys_d,ys_y-2*ys_d,3*ys_d);  
+  fill(255,255,255);
+  circle(ys_x-3*ys_d,ys_y-2*ys_d,1.7*ys_d); //눈동자
+  circle(ys_x+3*ys_d,ys_y-2*ys_d,1.7*ys_d);
+  circle(ys_x,ys_y+ys_d,2.6*ys_d); //코
+  fill(#B98420);
+  arc(ys_x-4*ys_d,ys_y+2.3*ys_d,8*ys_d,3*ys_d,0,PI/2); //입
+  arc(ys_x+4*ys_d,ys_y+2.3*ys_d,8*ys_d,3*ys_d,PI/2,PI);
+ }
+ 
+ void ys_move(){
+  if(ys_x + 10*ys_d >= width || ys_x - 10*ys_d <= 0){
+    ys_vx *= -1;
+    ys_x += ys_vx;
+  }
+  if(ys_y + 10*ys_d >= height || ys_y - 10*ys_d <= 0){
+    ys_vy *= -1;
+    ys_y += ys_vy;
+  }
+  ys_x += ys_vx;
+  ys_y += ys_vy;
+  
+
+ }
+ 
+}
+ys[] ys;
+
+class yohaan{
+ float yohaan_x, yohaan_y, yohaan_d, yohaan_vx,yohaan_vy;
+ 
+ yohaan(){
+ yohaan_x = random(100, 700);
+ yohaan_y = random(100, 700);
+ yohaan_d = 100;
+ yohaan_vx = random(-10, 10);
+ yohaan_vy = random(-10, 10);
+ }
+ 
+ void yohaan_show(){
+   fill(255, 255, 255);
+   circle(yohaan_x, yohaan_y, yohaan_d); // head
+   fill(0, 0, 0);
+   circle(yohaan_x - yohaan_d/4, yohaan_y, yohaan_d/2); //left eye
+   circle(yohaan_x + yohaan_d/4, yohaan_y, yohaan_d/2); //right eye
+   arc(yohaan_x, yohaan_y - yohaan_d/4, yohaan_d/2, yohaan_d/32, PI, 2 * PI);
+   rect(yohaan_x - yohaan_d/4, yohaan_y - yohaan_d/4, yohaan_d/2, yohaan_d/4);
+   rect(yohaan_x - yohaan_d/4, yohaan_y, yohaan_d/2, yohaan_d/6);
+   fill(255);
+   arc(yohaan_x, yohaan_y + yohaan_d/3.6, yohaan_d/4, yohaan_d/4, PI * 1.3, 1.7 * PI);
+   arc(yohaan_x, yohaan_y + yohaan_d/3, yohaan_d/2, yohaan_d/8, 0, PI);
+
+ }
+ 
+ void yohaan_move(){
+  if (yohaan_x + yohaan_d >= width || yohaan_x - yohaan_d <= 0){
+    yohaan_vx *= -1;
+    yohaan_x += yohaan_vx;
+  }
+  if (yohaan_y + yohaan_d >= height || yohaan_y - yohaan_d <= 0){
+    yohaan_vy *= -1;
+    yohaan_y += yohaan_vy;
+  }
+  yohaan_x += yohaan_vx;
+  yohaan_y += yohaan_vy;
+  
+ }
+}
+yohaan[] yohaan;
+
+class th{
+ float x, y, d, vx,vy;
+ 
+ th(){
+ x = random(100, 700);
+ y = random(100, 700);
+ d =100;
+ vx = random(-10, 10);
+ vy = random(-10, 10);
+ }
+ 
+ void th_show(){
+   square ( x - d/2,y -d/2 ,d );
+
+   fill(255,255,255);
+   circle ( x-d/5 ,y-d/5,d/5);
+   circle ( x+d/5 ,y-d/5,d/5);
+
+   fill(0,0,0);
+   circle ( x-d/5 ,y-d/5,d/10);
+   circle ( x+d/5 ,y-d/5,d/10);
+
+   fill(0,0,0);
+   rect(x-d*0.4,y,d*0.4,d/10);
+   line(x-d*0.4,y+d/5,x+d*0.4,y+d/5);
+ }
+ 
+ void th_move(){
+  if(x + d >= width || x - d <= 0){
+    vx *= -1;
+    x += vx;
+  }
+  if(y + d >= height || y - d <= 0){
+    vy *= -1;
+    y += vy;
+  }
+
+  x += vx;
+  y += vy;
+ }
+}
+th[] th;
+
+void setup(){
+ size(800,800);
+ ys = new ys[5];
+ yohaan = new yohaan[5];
+ th = new th[5];
+ for(int i=0;i<3;i++){
+  ys[i] = new ys();
+  yohaan[i] = new yohaan();
+  th[i] = new th();
+ }
+}
+
+void draw(){
+ background(255);
+ for(int i=0;i<3;i++){
+   ys[i].ys_show();
+   ys[i].ys_move();
+   yohaan[i].yohaan_show();
+   yohaan[i].yohaan_move();
+   th[i].th_show();
+   th[i].th_move();
+ }
+}

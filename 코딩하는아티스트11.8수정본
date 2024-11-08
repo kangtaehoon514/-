@@ -3,7 +3,7 @@ class ys{
  
  ys(){
  ys_x = random(100, 700);
- ys_y = random(100, 700);
+ ys_y = random(100, 200);
  ys_d = 5;
  ys_vx = random(-10, 10);
  ys_vy = random(-10, 10);
@@ -51,7 +51,7 @@ class yohaan{
  
  yohaan(){
  yohaan_x = random(100, 700);
- yohaan_y = random(100, 700);
+ yohaan_y = random(400, 500);
  yohaan_d = 100;
  yohaan_vx = random(-10, 10);
  yohaan_vy = random(-10, 10);
@@ -93,7 +93,7 @@ class th{
  
  th(){
  x = random(100, 700);
- y = random(100, 700);
+ y = random(600, 700);
  d =100;
  vx = random(-10, 10);
  vy = random(-10, 10);
@@ -152,5 +152,52 @@ void draw(){
    yohaan[i].yohaan_move();
    th[i].th_show();
    th[i].th_move();
+   
  }
+ for (int i = 0; i < 3; i++){
+   for (int j = 0; j < 3; j++){
+        println(pow(ys[i].ys_x - yohaan[i].yohaan_x, 2) + pow(ys[i].ys_y - yohaan[i].yohaan_y, 2));
+       if (pow(ys[i].ys_x - yohaan[j].yohaan_x, 2) + pow(ys[i].ys_y - yohaan[j].yohaan_y, 2) <= 10000){
+         ys[i].ys_vx *= -1;
+         ys[i].ys_vy *= -1;
+         yohaan[j].yohaan_vx *= -1;
+         yohaan[j].yohaan_vy *= -1;
+         ys[i].ys_x += ys[i].ys_vx;
+         ys[i].ys_y += ys[i].ys_vy;
+         yohaan[j].yohaan_x += yohaan[j].yohaan_vx;
+         yohaan[j].yohaan_y += yohaan[j].yohaan_vy;
+       }
+   }
+ }
+ 
+ for (int i = 0; i < 3; i++){
+   for (int j = 0; j < 3; j++){
+       if (pow(ys[i].ys_x - th[j].x, 2) + pow(ys[i].ys_y - th[j].y, 2) <= 10000){
+         ys[i].ys_vx *= -1;
+         ys[i].ys_vy *= -1;
+         th[j].vx *= -1;
+         th[j].vy *= -1;
+         ys[i].ys_x += ys[i].ys_vx;
+         ys[i].ys_y += ys[i].ys_vy;
+         th[j].x += th[j].vx;
+         th[j].y += th[j].vy;
+       }
+   }
+ }
+ 
+ for (int i = 0; i < 3; i++){
+   for (int j = 0; j < 3; j++){
+       if (pow(yohaan[i].yohaan_x - th[j].x, 2) + pow(yohaan[i].yohaan_y - th[j].y, 2) <= 10000){
+         yohaan[i].yohaan_vx *= -1;
+         yohaan[i].yohaan_vy *= -1;
+         th[j].vx *= -1;
+         th[j].vy *= -1;
+         yohaan[i].yohaan_x += yohaan[i].yohaan_vx;
+         yohaan[i].yohaan_y += yohaan[i].yohaan_vy;
+         th[j].x += th[j].vx;
+         th[j].y += th[j].vy;
+       }
+   }
+ }
+ 
 }

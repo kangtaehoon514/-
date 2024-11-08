@@ -1,0 +1,60 @@
+class ys{
+ float ys_x, ys_y, ys_d, ys_vx,ys_vy;
+ 
+ ys(){
+ ys_x = random(12*ys_d + 1,width-12*ys_d);
+ ys_y = random(12*ys_d + 1,height-12*ys_d);
+ ys_d = 5;
+ ys_vx = random(3,10);
+ ys_vy = random(3,10);
+ }
+ 
+ void ys_show(){
+ fill(#B98420);
+  arc(ys_x-7*ys_d,ys_y-6.2*ys_d,4*ys_d,7*ys_d,0,2*PI); //귀
+  arc(ys_x+7*ys_d,ys_y-6.2*ys_d,4*ys_d,7*ys_d,0,2*PI);
+  circle(ys_x,ys_y,20*ys_d);   //얼굴
+  fill(0,0,0);
+  arc(ys_x-3*ys_d,ys_y-4*ys_d,5*ys_d,1.5*ys_d,0,2*PI);  //눈썹
+  arc(ys_x+3*ys_d,ys_y-4*ys_d,5*ys_d,1.5*ys_d,0,2*PI);
+  circle(ys_x-3*ys_d,ys_y-2*ys_d,3*ys_d);  //눈
+  circle(ys_x+3*ys_d,ys_y-2*ys_d,3*ys_d);  
+  fill(255,255,255);
+  circle(ys_x-3*ys_d,ys_y-2*ys_d,1.7*ys_d); //눈동자
+  circle(ys_x+3*ys_d,ys_y-2*ys_d,1.7*ys_d);
+  circle(ys_x,ys_y+ys_d,2.6*ys_d); //코
+  fill(#B98420);
+  arc(ys_x-4*ys_d,ys_y+2.3*ys_d,8*ys_d,3*ys_d,0,PI/2); //입
+  arc(ys_x+4*ys_d,ys_y+2.3*ys_d,8*ys_d,3*ys_d,PI/2,PI);
+ }
+ 
+ void ys_move(){
+  ys_x += ys_vx;
+  ys_y += ys_vy;
+  if(ys_x + 10*ys_d >= width || ys_x - 10*ys_d <= 0) ys_vx *= -1;
+  if(ys_y + 10*ys_d >= height || ys_y - 10*ys_d <= 0) ys_vy *= -1;
+
+ }
+ 
+}
+ys[] ys;
+
+void setup(){
+ size(800,800);
+ ys = new ys[5];
+ for(int i=0;i<3;i++){
+  ys[i] = new ys(); 
+ }
+}
+
+void draw(){
+ background(255);
+for(int i=0;i<3;i++){
+  ys[i].ys_show();
+  ys[i].ys_move();
+  for(int j=0; j<3; j++){
+
+    if(ys[i].ys_y*ys[i].ys_y-2*ys[i].ys_y*ys[j].ys_y+ys[j].ys_y*ys[j].ys_y + ys[i].ys_x*ys[i].ys_x - 2*ys[i].ys_x*ys[j].ys_x +ys[j].ys_x*ys[j].ys_x <= 10000) ys[i].ys_vx *= -1; ys[i].ys_vy *= -1; ys[j].ys_vx *= -1; ys[j].ys_vy *= -1;
+  }
+ }
+}
